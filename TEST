@@ -1,0 +1,12 @@
+Makefile
+TEST
+file1
+file2
+ft_printf
+includes
+libft
+libft.a
+libftprintf.a
+pipex
+pipex_bonus
+srcs
