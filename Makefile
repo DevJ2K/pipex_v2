@@ -22,7 +22,7 @@ SRCS 			= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS			= $(SRCS:.c=.o)
 
 # BONUS
-BONUS_SRCS_FILES	= pipex utils ft_error lst_function
+BONUS_SRCS_FILES	= pipex utils ft_error lst_function handle_heredoc
 BONUS_SRCS 			= $(addprefix $(BONUS_SRCS_DIR), $(addsuffix .c, $(BONUS_SRCS_FILES)))
 BONUS_OBJS			= $(BONUS_SRCS:.c=.o)
 
