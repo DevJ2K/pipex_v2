@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:17:55 by tajavon           #+#    #+#             */
-/*   Updated: 2023/12/04 09:07:24 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/15 23:56:55 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	ft_open(char *path, char methods)
 {
 	int	fd;
 
+	fd = -1;
 	if (methods == 'r')
 		fd = open(path, O_RDONLY, 0777);
 	else if (methods == 'w')
@@ -102,7 +103,7 @@ int	ft_open(char *path, char methods)
 
 /// @brief Execute the command using the environment variables PATH.
 /// @param cmd The command you want to execute.
-/// @param envp The environment variables of the computer. 
+/// @param envp The environment variables of the computer.
 void	execute_cmd(char *cmd, char **envp)
 {
 	char	**cmd_params;

@@ -5,8 +5,8 @@ NAME			= pipex
 NAME_BONUS		= pipex_bonus
 CC				= gcc
 INCLUDES		= includes
-# CFLAGS			= -Wall -Werror -Wextra -I
-CFLAGS		= -I
+CFLAGS			= -Wall -Werror -Wextra -I
+# CFLAGS		= -I
 FT_PRINTF		= ft_printf
 LIBFT			= libft
 RM				= rm -f
@@ -22,7 +22,7 @@ SRCS 			= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS			= $(SRCS:.c=.o)
 
 # BONUS
-BONUS_SRCS_FILES	= pipex utils ft_error
+BONUS_SRCS_FILES	= pipex utils ft_error lst_function
 BONUS_SRCS 			= $(addprefix $(BONUS_SRCS_DIR), $(addsuffix .c, $(BONUS_SRCS_FILES)))
 BONUS_OBJS			= $(BONUS_SRCS:.c=.o)
 
@@ -45,7 +45,7 @@ $(NAME):	$(OBJS)
 
 $(NAME_BONUS):	$(BONUS_OBJS)
 				make -C $(FT_PRINTF)
-				make -C $(LIBFT)
+				make bonus -C $(LIBFT)
 				mv ft_printf/libftprintf.a .
 				mv libft/libft.a .
 				$(CC) $(BONUS_OBJS) libftprintf.a libft.a -o $(NAME_BONUS)
