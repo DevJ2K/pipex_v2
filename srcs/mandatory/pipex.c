@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:20 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/15 22:02:51 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/15 22:16:57 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 #include "libft.h"
 #include "pipex.h"
 
-static int	execute_process_1(
+/// @brief Execute the command from the file to the pipe.
+/// @param file The file to use as input for the command.
+/// @param cmd The command to execute.
+/// @param pipe_fd The fd array you have pipe().
+/// @param envp The environment variables.
+static void	execute_process_1(
 	char *file, char *cmd, int pipe_fd[2], char **envp)
 {
 	int	fd;
@@ -28,7 +33,12 @@ static int	execute_process_1(
 	execute_cmd(cmd, envp);
 }
 
-static int	execute_process_2(
+/// @brief Execute the command from the pipe to the file.
+/// @param file The file to use as output for the command.
+/// @param cmd The command to execute.
+/// @param pipe_fd The fd array you have pipe().
+/// @param envp The environment variables.
+static void	execute_process_2(
 	char *file, char *cmd, int pipe_fd[2], char **envp)
 {
 	int	fd;
@@ -42,11 +52,11 @@ static int	execute_process_2(
 	execute_cmd(cmd, envp);
 }
 
-/// @brief Create a pipe to execute command.
-/// @param cmd The command you want to run in the pipe
-/// @param envp The environment variables
-/// @return Returns -1 for errors, 0 for successful
-static int	ft_pipe(char **argv, char **envp)
+/// @brief This function is used to reproduce the
+/// behavior of a pipe between two commands.
+/// @param argv Arguments containing file names and commands.
+/// @param envp The environment variables.
+static void	ft_pipe(char **argv, char **envp)
 {
 	pid_t	cmd_pid_1;
 	pid_t	cmd_pid_2;
