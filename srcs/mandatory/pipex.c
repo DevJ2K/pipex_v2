@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:20 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/15 21:30:12 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/15 21:48:40 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static int	ft_pipe(char **argv, char **envp)
 {
 	pid_t	cmd_pid_1;
 	pid_t	cmd_pid_2;
+	int		status_cmd_1;
+	int		status_cmd_2;
 	int		fd[2];
 
 	if (pipe(fd) == -1)
@@ -66,8 +68,10 @@ static int	ft_pipe(char **argv, char **envp)
 	close(fd[0]);
 	close(fd[1]);
 
-	waitpid(cmd_pid_1, NULL, 0);
-	waitpid(cmd_pid_2, NULL, 0);
+	waitpid(cmd_pid_1, &status_cmd_1, 0);
+	waitpid(cmd_pid_2, &status_cmd_2, 0);
+	if (WIFEXITED(status_cmd_2))
+		exit(WEXITSTATUS(status_cmd_2));
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -76,13 +80,9 @@ int	main(int argc, char **argv, char **envp)
 	int	fd_in;
 
 	if (argc == 1)
-		ft_error("./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2", 1);
+		ft_error("./pipex file1 cmd1 cmd2 file2", 1);
 	if (argc != 5)
 		ft_error("Bad number of arguments.", 1);
 	close(ft_open(argv[4], 'w'));
 	ft_pipe(argv, envp);
-
-
-
-	return (0);
 }
