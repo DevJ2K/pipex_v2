@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:20 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/15 21:48:40 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/15 22:02:51 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "libft.h"
 #include "pipex.h"
 
-static int	execute_process_1(char *file, char *cmd, int pipe_fd[2], char **envp)
+static int	execute_process_1(
+	char *file, char *cmd, int pipe_fd[2], char **envp)
 {
 	int	fd;
 
@@ -27,7 +28,8 @@ static int	execute_process_1(char *file, char *cmd, int pipe_fd[2], char **envp)
 	execute_cmd(cmd, envp);
 }
 
-static int	execute_process_2(char *file, char *cmd, int pipe_fd[2], char **envp)
+static int	execute_process_2(
+	char *file, char *cmd, int pipe_fd[2], char **envp)
 {
 	int	fd;
 
@@ -59,7 +61,6 @@ static int	ft_pipe(char **argv, char **envp)
 		ft_error("Failed to clone the calling process.", -1);
 	if (cmd_pid_1 == 0)
 		execute_process_1(argv[1], argv[2], fd, envp);
-
 	cmd_pid_2 = fork();
 	if (cmd_pid_2 == -1)
 		ft_error("Failed to clone the calling process.", -1);
@@ -67,7 +68,6 @@ static int	ft_pipe(char **argv, char **envp)
 		execute_process_2(argv[4], argv[3], fd, envp);
 	close(fd[0]);
 	close(fd[1]);
-
 	waitpid(cmd_pid_1, &status_cmd_1, 0);
 	waitpid(cmd_pid_2, &status_cmd_2, 0);
 	if (WIFEXITED(status_cmd_2))
