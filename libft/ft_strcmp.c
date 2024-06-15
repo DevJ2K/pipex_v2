@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:07:03 by tajavon           #+#    #+#             */
-/*   Updated: 2023/12/01 16:10:37 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/16 00:09:16 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (i < max_length)
 	{
 		if (s1[i] - s2[i] != 0)
-			return (s1[i] - s2[i]);
+			return (1);
 		i++;
 	}
 	return (0);
