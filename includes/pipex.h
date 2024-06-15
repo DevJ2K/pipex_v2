@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:11 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/16 01:03:03 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/16 01:04:59 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void		execute_cmd(char *cmd, char **envp);
 
 t_pid_list	*ft_lstnew_pid(pid_t pid);
 void		ft_lstadd_pid(t_pid_list **lst, t_pid_list *new);
-int			handle_heredoc(char *limiter)
+int			handle_heredoc(char *limiter);
 
 #endif
