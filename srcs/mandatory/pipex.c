@@ -86,9 +86,6 @@ static void	ft_pipe(char **argv, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int	fd_out;
-	int	fd_in;
-
 	if (argc == 1)
 		ft_error("./pipex file1 cmd1 cmd2 file2", 1);
 	if (argc != 5)
