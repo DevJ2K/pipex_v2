@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:20 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/16 01:02:42 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/17 09:12:14 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ static void	read_pipe_to_file(
 {
 	int	out_fd;
 
+	close(pipe_fd[1]);
+	dup2(pipe_fd[0], STDIN_FILENO);
+	close(pipe_fd[0]);
 	if (!ft_strcmp(argv[1], "here_doc"))
 		out_fd = ft_open(argv[argc - 1], 'a');
 	else
 		out_fd = ft_open(argv[argc - 1], 'w');
-	close(pipe_fd[1]);
 	dup2(out_fd, STDOUT_FILENO);
 	close(out_fd);
-	dup2(pipe_fd[0], STDIN_FILENO);
-	close(pipe_fd[0]);
 	execute_cmd(argv[argc - 2], envp);
 }
 
@@ -70,6 +70,7 @@ static void	ft_pipex(int argc, char **argv, char **envp)
 {
 	t_pid_list	*pid_list;
 	int			fd[2];
+	int			last_status;
 
 	if (pipe(fd) == -1)
 		ft_error("Failed to create a one way communication channel.", -1);
@@ -78,9 +79,11 @@ static void	ft_pipex(int argc, char **argv, char **envp)
 	close(fd[1]);
 	while (pid_list)
 	{
-		waitpid(pid_list->pid, NULL, 0);
+		waitpid(pid_list->pid, &last_status, 0);
 		pid_list = pid_list->next;
 	}
+	if (WIFEXITED(last_status))
+		exit(WEXITSTATUS(last_status));
 }
 
 int	main(int argc, char **argv, char **envp)
