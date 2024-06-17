@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:26:20 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/15 22:16:57 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/17 09:03:14 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	execute_process_1(
 {
 	int	fd;
 
-	fd = ft_open(file, 'r');
 	close(pipe_fd[0]);
-	dup2(fd, STDIN_FILENO);
-	close(fd);
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[1]);
+	fd = ft_open(file, 'r');
+	dup2(fd, STDIN_FILENO);
+	close(fd);
 	execute_cmd(cmd, envp);
 }
 
@@ -43,12 +43,12 @@ static void	execute_process_2(
 {
 	int	fd;
 
-	fd = ft_open(file, 'w');
 	close(pipe_fd[1]);
-	dup2(fd, STDOUT_FILENO);
-	close(fd);
 	dup2(pipe_fd[0], STDIN_FILENO);
 	close(pipe_fd[0]);
+	fd = ft_open(file, 'w');
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
 	execute_cmd(cmd, envp);
 }
 
