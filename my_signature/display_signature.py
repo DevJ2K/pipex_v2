@@ -1,7 +1,7 @@
 import time
 import subprocess
 
-BHGREEN = "\033[7;32m"
+BHGREEN = "\033[1;32m"
 BHYELLOW = "\033[1;33m"
 BHWHITE = "\033[1;37m"
 BHBLUE = "\033[1;34m"
@@ -12,7 +12,7 @@ RESET = "\033[0m"
 
 def display_signature():
 	toggle = False
-	subprocess.run("clear", shell=True)
+	# subprocess.run("clear", shell=True)
 	with open("my_signature/ascii_signature", "r") as f:
 		for line in f:
 			for char in line:

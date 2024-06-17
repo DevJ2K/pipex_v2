@@ -56,6 +56,7 @@ $(NAME):	$(OBJS)
 				@mv libft/libft.a .
 				@$(CC) $(OBJS) libftprintf.a libft.a -o $(NAME)
 				@echo "$(GREEN)$(NAME) successfully compiled !$(DEF_COLOR)"
+				python welcome.py
 
 $(NAME_BONUS):	$(BONUS_OBJS)
 				@make -C $(FT_PRINTF)
@@ -64,6 +65,7 @@ $(NAME_BONUS):	$(BONUS_OBJS)
 				@mv libft/libft.a .
 				@$(CC) $(BONUS_OBJS) libftprintf.a libft.a -o $(NAME_BONUS)
 				@echo "$(GREEN)$(NAME_BONUS) successfully compiled !$(DEF_COLOR)"
+				python welcome.py
 
 clean:
 				@$(RM) $(OBJS)

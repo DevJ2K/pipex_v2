@@ -1,0 +1,14 @@
+
+/***********************************************************************\
+|                                                                       |
+| Without bonus (using 'make') :                                        |
+|                                                                       |
+| =>5./pipex0file1 "cmd1" "cmd2" file2                                  |
+|                                                                       |
+| With bonus (using 'make bonus') :                                     |
+|                                                                       |
+| =>7./pipex_bonus0file1 "cmd1" "cmd2" "cmd3" ... "cmdn" file2          |
+|                                                                       |
+| =>7./pipex_bonus0here_doc LIMITER "cmd1" "cmd2" ... "cmdn" file2      |
+|                                                                       |
+\***********************************************************************/
