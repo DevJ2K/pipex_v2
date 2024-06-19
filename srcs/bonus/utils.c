@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:17:55 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/15 23:27:43 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/19 12:35:24 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,16 @@ char	*get_path(char	**env, char *cmd)
 	char	*path_cmd;
 	char	**paths;
 
+	if (!env || !*env)
+		return (NULL);
 	while (*env)
 	{
 		if (ft_strncmp(*env, "PATH=", 5) == 0)
 			break ;
 		env++;
 	}
+	if (!env || !*env)
+		return (NULL);
 	*env += 5;
 	paths = ft_split(*env, ':');
 	if (!paths)
