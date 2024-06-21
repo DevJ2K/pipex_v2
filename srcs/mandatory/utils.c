@@ -6,7 +6,7 @@
 /*   By: tajavon <tajavon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:17:55 by tajavon           #+#    #+#             */
-/*   Updated: 2024/06/19 12:34:52 by tajavon          ###   ########.fr       */
+/*   Updated: 2024/06/21 08:56:43 by tajavon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,14 @@ void	execute_cmd(char *cmd, char **envp)
 	char	**cmd_params;
 	char	*cmd_path;
 
+	cmd_path = NULL;
 	cmd_params = ft_split(cmd, ' ');
 	if (!cmd_params)
 		ft_error("Failed to allocate memory.", 1);
-	cmd_path = get_path(envp, cmd_params[0]);
+	if (access(cmd, F_OK | X_OK) == 0)
+		cmd_path = cmd;
+	else
+		cmd_path = get_path(envp, cmd_params[0]);
 	if (!cmd_path)
 	{
 		ft_free_tab(cmd_params);
