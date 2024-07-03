@@ -3,6 +3,7 @@
 
 NAME			= pipex
 NAME_BONUS		= pipex_bonus
+NAME_ADVANCED	= pipex_advanced
 CC				= cc
 INCLUDES		= includes
 CFLAGS			= -Wall -Werror -Wextra -I
@@ -12,6 +13,7 @@ LIBFT			= libft
 RM				= rm -f
 SRCS_DIR		= srcs/mandatory/
 BONUS_SRCS_DIR	= srcs/bonus/
+ADVANCED_SRCS_DIR = srcs/advanced/
 
 ########################################
 ########## COLORS
@@ -38,6 +40,11 @@ BONUS_SRCS_FILES	= pipex utils ft_error lst_function handle_heredoc
 BONUS_SRCS 			= $(addprefix $(BONUS_SRCS_DIR), $(addsuffix .c, $(BONUS_SRCS_FILES)))
 BONUS_OBJS			= $(BONUS_SRCS:.c=.o)
 
+# ADVANCED
+ADVANCED_SRCS_FILES	= pipex utils ft_error lst_function handle_heredoc
+ADVANCED_SRCS 		= $(addprefix $(ADVANCED_SRCS_DIR), $(addsuffix .c, $(ADVANCED_SRCS_FILES)))
+ADVANCED_OBJS		= $(ADVANCED_SRCS:.c=.o)
+
 .c.o:
 		@echo "$(MAGENTA)Compilation of : $<..$(DEF_COLOR)"
 		@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
@@ -48,6 +55,8 @@ BONUS_OBJS			= $(BONUS_SRCS:.c=.o)
 all:		$(NAME)
 
 bonus:		$(NAME_BONUS)
+
+advanced:	$(NAME_ADVANCED)
 
 $(NAME):	$(OBJS)
 				@make -C $(FT_PRINTF)
@@ -65,6 +74,15 @@ $(NAME_BONUS):	$(BONUS_OBJS)
 				@mv libft/libft.a .
 				@$(CC) $(BONUS_OBJS) libftprintf.a libft.a -o $(NAME_BONUS)
 				@echo "$(GREEN)$(NAME_BONUS) successfully compiled !$(DEF_COLOR)"
+				python welcome.py
+
+$(NAME_ADVANCED):	$(ADVANCED_OBJS)
+				@make -C $(FT_PRINTF)
+				@make bonus -C $(LIBFT)
+				@mv ft_printf/libftprintf.a .
+				@mv libft/libft.a .
+				@$(CC) $(ADVANCED_OBJS) libftprintf.a libft.a -o $(NAME_ADVANCED)
+				@echo "$(GREEN)$(NAME_ADVANCED) successfully compiled !$(DEF_COLOR)"
 				python welcome.py
 
 clean:
