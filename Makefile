@@ -88,6 +88,7 @@ $(NAME_ADVANCED):	$(ADVANCED_OBJS)
 clean:
 				@$(RM) $(OBJS)
 				@$(RM) $(BONUS_OBJS)
+				@$(RM) $(ADVANCED_OBJS)
 				@make clean -C $(FT_PRINTF)
 				@make clean -C $(LIBFT)
 				@echo "$(RED)Deletion of $(OBJS)$(DEF_COLOR)"
@@ -95,9 +96,10 @@ clean:
 fclean: 	clean
 				@$(RM) $(NAME)
 				@$(RM) $(NAME_BONUS)
+				@$(RM) $(NAME_ADVANCED)
 				@$(RM) libftprintf.a
 				@$(RM) libft.a
-				@echo "$(RED)Deletion of $(NAME) & $(NAME_BONUS) $(DEF_COLOR)"
+				@echo "$(RED)Deletion of $(NAME) & $(NAME_BONUS) & $(NAME_ADVANCED) $(DEF_COLOR)"
 
 re:			fclean all
 
